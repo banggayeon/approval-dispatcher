@@ -13,27 +13,48 @@ public class Template {
     @Column(nullable = false, length = 80)
     private String name;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "channel_type", nullable = false, length = 20)
     private String channelType;
 
     @Lob
-    @Column(nullable = false)
-    private String body;
+    @Column(name = "prompt_body", nullable = false)
+    private String promptBody;
 
-    @Column(nullable = false, updatable = false)
-    private Instant createdAt = Instant.now();
+    @Lob
+    @Column(name = "tone_presets_json")
+    private String tonePresetsJson;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     protected Template() {}
 
-    public Template(String name, String channelType, String body) {
+    public Template(String name, String channelType, String promptBody) {
         this.name = name;
         this.channelType = channelType;
-        this.body = body;
+        this.promptBody = promptBody;
+    }
+
+    @PrePersist
+    void onCreate(){
+        Instant now = Instant.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    void onUpdate(){
+        this.updatedAt = Instant.now();
     }
 
     public Long getId() { return id; }
     public String getName() { return name; }
     public String getChannelType() { return channelType; }
-    public String getBody() { return body; }
+    public String getPromptBody() { return promptBody; }
+    public String getTonePresetsJson() {return tonePresetsJson; } 
     public Instant getCreatedAt() { return createdAt; }
+    public Instant getUpdatedAt() { return updatedAt; }
 }

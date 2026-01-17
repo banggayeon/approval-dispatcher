@@ -18,7 +18,7 @@ public class TemplateService {
 
     @Transactional
     public Long create(TemplateCreateRequest req) {
-        Template t = new Template(req.getName(), req.getChannelType(), req.getBody());
+        Template t = new Template(req.getName(), req.getChannelType(), req.getPromptBody());
         return repo.save(t).getId();
     }
 

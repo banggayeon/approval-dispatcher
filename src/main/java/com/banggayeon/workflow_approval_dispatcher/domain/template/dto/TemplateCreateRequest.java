@@ -13,9 +13,9 @@ public class TemplateCreateRequest {
     private String channelType;
 
     @NotBlank
-    private String body;
+    private String promptBody;
 
     public String getName() { return name; }
     public String getChannelType() { return channelType; }
-    public String getBody() { return body; }
+    public String getPromptBody() { return promptBody; }
 }   
