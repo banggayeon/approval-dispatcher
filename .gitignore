@@ -39,3 +39,7 @@ out/
 ### Local config (secrets) ###
 /src/main/resources/application-local.properties
 /.env
+
+### runtime logs
+*./log
+bootrun.log

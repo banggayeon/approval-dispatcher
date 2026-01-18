@@ -16,11 +16,9 @@ public class Template {
     @Column(name = "channel_type", nullable = false, length = 20)
     private String channelType;
 
-    @Lob
     @Column(name = "prompt_body", nullable = false)
     private String promptBody;
 
-    @Lob
     @Column(name = "tone_presets_json")
     private String tonePresetsJson;
 
