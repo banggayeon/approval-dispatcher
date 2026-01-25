@@ -33,4 +33,14 @@ public class GlobalExceptionHandler{
             "timestamp", Instant.now().toString()
         );
     }
+
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> badState(IllegalStateException e){
+        return Map.of(
+                "code", "BAD_STATE",
+                "message", e.getMessage(),
+                "timestamp", Instant.now().toString()
+        );
+    }
 }
